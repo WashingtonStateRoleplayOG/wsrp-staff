@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Washington State Roleplay - Dashboard</title>
+  <link rel="icon" href="https://i.postimg.cc/D05ZSwwt/WSRP-Logo-2.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-image: url('https://i.postimg.cc/GpRZ5JQx/download-4.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .bg-fade {
+      background-color: rgba(255, 255, 255, 0.85);
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-start min-h-screen p-0">
+  <!-- Navigation Bar -->
+  <nav class="w-full bg-fade p-4 flex justify-between items-center shadow-md">
+    <div class="flex items-center">
+      <img src="https://i.postimg.cc/D05ZSwwt/WSRP-Logo-2.png" alt="WSRP Logo" class="w-10 h-10 mr-2">
+      <span class="text-xl font-semibold">Washington State Roleplay</span>
+    </div>
+   <button id="logoutBtn" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Logout</button>
+
+  </nav>
+
+  <div class="w-full max-w-6xl bg-fade rounded-lg shadow-lg p-6 mt-6">
+    <div class="flex items-center mb-6">
+      <img src="https://i.postimg.cc/D05ZSwwt/WSRP-Logo-2.png" alt="WSRP Logo" class="w-12 h-12 mr-3">
+      <h1 class="text-3xl font-bold">Washington State Roleplay - Staff Dashboard</h1>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-lg shadow p-4">
+        <h2 class="text-xl font-semibold mb-2">View Staff Applications</h2>
+        <p class="text-sm text-gray-600">Coming soon: Manage and review applications submitted by users.</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4">
+        <h2 class="text-xl font-semibold mb-2">Post Announcements</h2>
+        <p class="text-sm text-gray-600">Coming soon: Publish updates and important notices for the team.</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4">
+        <h2 class="text-xl font-semibold mb-2">View Analytics</h2>
+        <p class="text-sm text-gray-600">Coming soon: Access website performance and usage statistics.</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+  import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDMDJjyb83Hq2SXZ7oqmoUktq0yw7RThJE",
+    authDomain: "wsrp-staff-panel.firebaseapp.com",
+    projectId: "wsrp-staff-panel",
+    storageBucket: "wsrp-staff-panel.appspot.com",
+    messagingSenderId: "625155158143",
+    appId: "1:625155158143:web:6caa1bf9d51b512a7ecf4a",
+    measurementId: "G-QWZWPNK6WT"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  document.querySelector("#logoutBtn").addEventListener("click", () => {
+    signOut(auth).then(() => {
+      window.location.href = "/login.html"; // Redirect after logout
+    }).catch((error) => {
+      alert("Error logging out.");
+      console.error(error);
+    });
+  });
+</script>
+
+</body>
+</html>

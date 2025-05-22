@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Washington State Roleplay - Staff Login</title>
+  <link rel="icon" href="https://i.postimg.cc/D05ZSwwt/WSRP-Logo-2.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-image: url('https://i.postimg.cc/GpRZ5JQx/download-4.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .bg-fade {
+      background-color: rgba(255, 255, 255, 0.85);
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+  <div class="bg-fade rounded-lg shadow-lg p-8 max-w-md w-full">
+    <div class="flex items-center justify-center mb-6">
+      <img src="https://i.postimg.cc/D05ZSwwt/WSRP-Logo-2.png" alt="WSRP Logo" class="w-12 h-12 mr-2">
+      <h1 class="text-2xl font-bold text-center">Washington State Roleplay - Staff Login</h1>
+    </div>
+    <form id="loginForm" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium">Email</label>
+        <input type="email" id="email" class="w-full border rounded px-3 py-2" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Password</label>
+        <input type="password" id="password" class="w-full border rounded px-3 py-2" required />
+      </div>
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Login</button>
+    </form>
+    <div id="loginError" class="text-red-600 text-sm mt-4 hidden">Invalid email or password.</div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDMDJjyb83Hq2SXZ7oqmoUktq0yw7RThJE",
+      authDomain: "wsrp-staff-panel.firebaseapp.com",
+      projectId: "wsrp-staff-panel",
+      storageBucket: "wsrp-staff-panel.appspot.com",
+      messagingSenderId: "625155158143",
+      appId: "1:625155158143:web:6caa1bf9d51b512a7ecf4a",
+      measurementId: "G-QWZWPNK6WT"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        window.location.href = "index.html";
+      } catch (error) {
+        loginError.classList.remove("hidden");
+      }
+    });
+  </script>
+</body>
+</html>
