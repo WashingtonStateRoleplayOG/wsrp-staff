@@ -69,7 +69,7 @@
 
   document.querySelector("#logoutBtn").addEventListener("click", () => {
     signOut(auth).then(() => {
-      window.location.href = "/login.html"; // Redirect after logout
+      window.location.href = "login.html"; // Redirect after logout
     }).catch((error) => {
       alert("Error logging out.");
       console.error(error);
